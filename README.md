@@ -107,3 +107,79 @@
         - $margin = SNRmeasured - SNRlimit-default margin$
     - US902-928 : SF7BW125 ~ SF10BW125
 
+
+## 2. LoRaWAN : networking PROTOCOL that delivers secure bi-directional communication defined by Lora Alliance
+
+- on top of LoRa technology, the LoRa Alliance has developed open-source protocol
+- MAC(Media Access Control) Layer protocol
+- provide LoRa …
+    - Adaptive Data Rate (ADR)
+    - Security
+    - GPS-free Geolocation
+    - Channel Access
+    - Energy Saving functionalities
+- three channel access strategies
+    
+    ; trade-off between performance(throughput, latency) and energy consumption
+    
+    - class A devices
+    
+    : default, least power consumption, AHOLA
+    
+    - class B devices
+    
+    : periodic wake ups
+    
+    - class C devices
+    
+    : really power intensive, receiver is always on
+    
+- can also be a network server
+
+
+## 3. Fundamental Components
+
+- End Nodes
+    - radio module with antenna + microprocessor for sensor
+    - does not allow direct communication between end nodes (but can do by using RadioHead Packet Radio library)
+- Gateways (Concentrators)
+    - operates on physical layer
+    - demodulate the LoRa packets
+    - nothing but LoRa radio message forwarders to LNS (LoRaWAN Network Server)
+    - single-channel gateways vs. multi-channel gateways (channels = frequencies)
+    - radio module with antenna + microprocessor for data
+    - can listen to multiple frequencies simultaneously
+- Network Server (LNS)
+    - like the router(which application server) of the LoRaWAN protocol
+    - manages entire network
+    - ensures authenticity of every sensor and message
+    - performs uplink de-duplication, deleting all copies based on RSSI (Received Signal Strength Indicator)
+    - schedules downlink messages
+    - handles JOIN request and JOIN accept messages between device and Join server
+- Application Server
+    - receives frame from the Network server and decrypt the data
+    - encrypts the data and send the downlinks to the end nodes
+    - AWS, MQTT broker, HTTP, Dashboards etc
+- Join Server
+    - an end device must first be activated before it is able to communicate with the network server
+    - activation methods
+        - Over-The-Air-Activation (OTAA)
+            - Join procedure to exchange keys securely
+            - end devices store
+                1. DevEUI - similar to HW MAC address
+                2. AppEUI - to encrypt and decrypt message, similar to a port number
+                3. AppKey - to check integrity of message
+                    1. Device address; DevAddr
+                    2. Network Session key; NwkSKey
+                    3. Application Session key; AppSKey
+            - network server know : AppKey
+            
+            <img width="868" alt="Screenshot 2024-01-23 at 2 22 24 PM" src="https://github.com/JeongHwaSik/KSW_LoRa/assets/99574746/1e727fd5-1e1b-4b82-b1ae-c2868b78e03a">
+            <img width="786" alt="Screenshot 2024-01-23 at 2 15 51 PM" src="https://github.com/JeongHwaSik/KSW_LoRa/assets/99574746/9ac84670-e812-48e5-9afe-a6d7af94dcfc">
+            
+        - Activation-By-Personalization (ABP)
+    - used in the Over the Air Activation(OTAA) commissioning process
+
+## 4. Overview of LoRa/LoRaWAN
+
+<img width="1392" alt="Screenshot 2024-03-03 at 4 52 37 PM" src="https://github.com/JeongHwaSik/KSW_LoRa/assets/99574746/c1b14527-0727-4a79-b0fa-e97ad2d20894">
