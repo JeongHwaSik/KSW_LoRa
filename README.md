@@ -10,7 +10,7 @@
     - higher sensitivity → enabling long-distance connectivity
     - 8 up chirps followed by 2 down chirps… and then data
 - Power (Watt, W)
-    - RF signal can be measured by Watt (W) using amplitude
+    - RF signal can be measured by Watt (W) using amplitude
     - $dBm = 10log^P(P : power, W)$
 - Receive Sensitivity a minimum power that can receive signal
     - LoRa receiver is really sensitive, down to -148dBm
@@ -23,8 +23,8 @@
     - closer to zero → received signal is stronger
     - influenced by Path loss, Antenna gain, Cable/connector loss
 - SNR (Signal-to-Noise Ratio) (dB; relative)
-    - demodulation의 기준이 되는 신호의 quality
-    - LoRa에서는 -20dB and +10dB 사이
+    - quality of the signal serving as the basis for demodulation
+    - in LoRa between -20dB and +10dB
     - ratio of the received signal power to the noise floor
     - commonly used to determine the quality of the received signal
     - SNR(dB) = RSSI(dBm) - noise floor(dBm)
